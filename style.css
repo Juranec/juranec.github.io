@@ -4,9 +4,10 @@ body {
 	font-size: 24pt;
 	text-align: center;
 	line-height: 1.3;
-	background: #ffffff;
+	background-color: #ffffff;
 	background-image: url('bg.jpg');
     background-attachment: fixed;
+    background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
 }
