@@ -3,28 +3,30 @@ body {
 	font-family: 'Roboto', sans-serif;
 	font-size: 24pt;
 	text-align: center;
-	line-height: 1.3;
+	line-height: 1.5;
 	background-color: #000000;
 	background-image: url('bg.jpg');
-    background-attachment: fixed;
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-p {
-	width: 650px;
-	margin: auto;
+	background-attachment: fixed;
+	background-position: 60% 0%;
+	background-repeat: no-repeat;
+	background-size: cover;
 }
 
 a {
+	padding: 2px;
 	text-decoration: none;
-	color: #ffaa00;
-	border-bottom: 2px dashed #ffaa00;
+	color: #ffffff;
+	border-bottom: 1px solid #ffaa00;
+	border-radius: 7px;
 }
 
 a:hover {
-	border-bottom: 2px solid #ffaa00;
+	border-color: #ffffff;
+}
+
+#logo {
+	font-size: 40pt;
+	margin: 20px;
 }
 
 #footer {
