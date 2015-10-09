@@ -1,7 +1,7 @@
 body {
 	color: #ffffff;
 	font-family: 'Roboto', sans-serif;
-	font-size: 24pt;
+	font-size: 16pt;
 	text-align: center;
 	line-height: 1.5;
 	background-color: #000000;
@@ -22,19 +22,4 @@ a {
 
 a:hover {
 	border-color: #ffffff;
-}
-
-#logo {
-	margin: 20px;
-	border: none;
-	opacity: 0.85;
-}
-
-#logo:hover {
-	opacity: 1;
-}
-
-#footer {
-	margin-top: 50px;
-	font-size: 16pt;
 }
