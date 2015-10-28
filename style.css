@@ -10,13 +10,11 @@ body {
 }
 
 a {
-	padding: 1px;
+	padding: 6px;
 	text-decoration: none;
 	color: #ffffff;
-	border-bottom: 1px solid #ffaa00;
-	border-radius: 6px;
 }
 
 a:hover {
-	border-color: #ffffff;
+	color: #ffaa00;
 }
