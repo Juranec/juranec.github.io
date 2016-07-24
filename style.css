@@ -1,20 +1,14 @@
 body {
-	color: #ffffff;
-	font-family: 'Roboto', sans-serif;
-	font-size: 16pt;
-	text-align: center;
-	line-height: 1.5;
 	background-color: #000000;
 	background-image: url('bg.png');
 	background-attachment: fixed;
 }
 
 a {
-	padding: 6px;
-	text-decoration: none;
-	color: #ffffff;
+	/*text-decoration: none;*/
+	opacity: 0.8;
 }
 
 a:hover {
-	color: #ffaa00;
+	opacity: 1;
 }
