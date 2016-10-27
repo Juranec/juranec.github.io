@@ -39,12 +39,13 @@ MList *ml_create(void) {
 	/* size of mailing list */
 	ml->lsize = size;
 
-	/* malloc for all nodes */
+	/* malloc for all buckets */
 	ml->buckets = malloc(sizeof(Bucket)*size);
 
-	/* calloc for each node */
+	/* malloc for each bucket */
 	for (i = 0; i < ml->lsize; i++) {
-		ml->buckets[i] = malloc(sizeof(MEntry)*size);
+		ml->buckets[i] = malloc(sizeof(MEntry)*BUCKETSIZE);
+		ml->buckets[i]->bsize = 0;
 	}
 
 	return ml;
@@ -56,7 +57,7 @@ void *ml_resize(MList *ml) {
 	int i, j;
 
 	if (ml_verbose){
-		fprintf(stderr, "mlist: ml_resize() entered\n");
+		fprintf(stderr, "mlist: resizing\n");
 	}
 
 	/* double the size, create new mailing list */
@@ -101,7 +102,7 @@ int ml_add(MList **ml, MEntry *me) {
 	(b->bsize)++;
 
 	/* if bucket filled, resize the list*/
-	if (b->bsize == (*ml)->lsize) {
+	if (b->bsize == BUCKETSIZE) {
 		*ml = ml_resize(*ml);
 	}
 
@@ -116,7 +117,7 @@ MEntry *ml_lookup(MList *ml, MEntry *me) {
 	int i;
 
 	if (ml_verbose) {
-		//fprintf(stderr, "mlist: ml_lookup() entered\n");
+		fprintf(stderr, "mlist: ml_lookup() entered\n");
 	}
 
 	/* find the right bucket */
