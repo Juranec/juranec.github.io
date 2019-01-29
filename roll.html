@@ -1,0 +1,16 @@
+<html>
+	<head>
+		<script>
+		function roll() {
+			var random = Math.random() * 6;
+			var floored = Math.ceil(random);
+			document.getElementById("dice").innerHTML = floored;
+		}
+		</script>
+		<title>dice roller</title>
+	</head>
+	<body>
+		<button onclick="roll()">roll</button>
+		<p id="dice"></p>
+	</body>
+</html>
