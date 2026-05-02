@@ -1,18 +1,72 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<title>Daniel Juranec</title>
-		<link rel='stylesheet' type='text/css' href='style.css'>
-		<link rel='icon' type='image/ico' href='favicon.png'>
-	</head>
-	<body>
-		<div id='logo'>
-			<img alt='Daniel Juranec' src='logo.png'>
-		</div>
-		<div>
-			<a href='https://www.facebook.com/juranec'>
-				<img src='photo.png'>
-			</a>
-		</div>
-	</body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Flag Icons for Windows compatibility -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.0.0/css/flag-icons.min.css">
+    <!-- Canvas Confetti for CV button -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body class="light-theme">
+    <!-- Custom Cursor -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
+    <div class="background-animation"></div>
+    
+    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Theme">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <main class="container">
+        <div class="profile-card fade-in">
+            <div class="profile-image-container">
+                <img src="assets/profile.jpg" alt="Profile Picture" class="profile-img">
+                <div class="status-indicator"></div>
+            </div>
+            
+            <div class="profile-info">
+                <h1 class="name">Daniel Juranec</h1>
+                <h2 class="title">Software Engineer</h2>
+                <p class="bio">Welcome to my personal page. Let's connect and build something amazing together.</p>
+            </div>
+
+            <!-- Skills Marquee -->
+            <div class="skills-marquee">
+                <div class="skills-track">
+                    <span>Java</span><span>Python</span><span>Databricks</span><span>Spark</span>
+                    <!-- Duplicate for infinite scroll effect -->
+                    <span>Java</span><span>Python</span><span>Databricks</span><span>Spark</span>
+                </div>
+            </div>
+
+            <div class="contact-links">
+                <a href="https://linkedin.com/in/juranec" target="_blank" class="social-btn linkedin">
+                    <i class="fab fa-linkedin"></i>
+                    <span>LinkedIn</span>
+                </a>
+                <a href="mailto:juranec@gmail.com" class="social-btn email">
+                    <i class="fas fa-envelope"></i>
+                    <span>Email Me</span>
+                </a>
+            </div>
+
+            <!-- Time & Status Widget -->
+            <div class="status-widget">
+                <i class="far fa-clock"></i>
+                <span>Glasgow <span class="fi fi-gb"></span> / <span class="fi fi-lt"></span> • </span>
+                <span id="local-time">--:--</span>
+            </div>
+        </div>
+    </main>
+    <script src="script.js"></script>
+</body>
 </html>
