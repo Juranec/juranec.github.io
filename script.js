@@ -5,11 +5,11 @@ document.addEventListener('mousemove', (e) => {
     // Custom cursor logic
     const cursorDot = document.querySelector('.cursor-dot');
     const cursorOutline = document.querySelector('.cursor-outline');
-    
+
     if (cursorDot && cursorOutline) {
         cursorDot.style.left = `${e.clientX}px`;
         cursorDot.style.top = `${e.clientY}px`;
-        
+
         // Add a slight delay to the outline for a smooth effect
         cursorOutline.animate({
             left: `${e.clientX}px`,
@@ -31,10 +31,10 @@ document.addEventListener('mousemove', (e) => {
 
     // Card tilt logic
     if (!card) return;
-    
+
     const xAxis = (window.innerWidth / 2 - e.pageX) / 50;
     const yAxis = (window.innerHeight / 2 - e.pageY) / 50;
-    
+
     // Only apply if we are not hovering over buttons to avoid messy interactions
     const isHoveringBtn = e.target.closest('.social-btn, button');
     if (!isHoveringBtn) {
@@ -55,23 +55,37 @@ const themeToggle = document.getElementById('theme-toggle');
 const body = document.body;
 const icon = themeToggle.querySelector('i');
 
-// Check saved theme
-const savedTheme = localStorage.getItem('theme');
-if (savedTheme === 'dark') {
-    body.classList.replace('light-theme', 'dark-theme');
-    icon.classList.replace('fa-moon', 'fa-sun');
-}
-
-themeToggle.addEventListener('click', () => {
-    if (body.classList.contains('light-theme')) {
+// Function to set theme
+function setTheme(isDark) {
+    if (isDark) {
         body.classList.replace('light-theme', 'dark-theme');
         icon.classList.replace('fa-moon', 'fa-sun');
-        localStorage.setItem('theme', 'dark');
     } else {
         body.classList.replace('dark-theme', 'light-theme');
         icon.classList.replace('fa-sun', 'fa-moon');
-        localStorage.setItem('theme', 'light');
     }
+}
+
+// Check saved theme or system preference
+const savedTheme = localStorage.getItem('theme');
+const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+
+if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark.matches)) {
+    setTheme(true);
+}
+
+// Listen for system theme changes dynamically
+systemPrefersDark.addEventListener('change', (e) => {
+    // Only auto-switch if the user hasn't manually set a preference
+    if (!localStorage.getItem('theme')) {
+        setTheme(e.matches);
+    }
+});
+
+themeToggle.addEventListener('click', () => {
+    const isCurrentlyLight = body.classList.contains('light-theme');
+    setTheme(isCurrentlyLight);
+    localStorage.setItem('theme', isCurrentlyLight ? 'dark' : 'light');
 });
 
 
