@@ -74,19 +74,7 @@ themeToggle.addEventListener('click', () => {
     }
 });
 
-// Confetti for Download CV Button
-const downloadBtn = document.getElementById('download-cv');
-if (downloadBtn) {
-    downloadBtn.addEventListener('click', (e) => {
-        // Trigger confetti
-        confetti({
-            particleCount: 100,
-            spread: 70,
-            origin: { y: 0.6 },
-            colors: ['#f97316', '#8b5cf6', '#ec4899', '#3b82f6']
-        });
-    });
-}
+
 
 // Live Time Widget (Glasgow Timezone)
 const timeDisplay = document.getElementById('local-time');
@@ -98,7 +86,6 @@ function updateTime() {
         timeZone: 'Europe/London',
         hour: '2-digit',
         minute: '2-digit',
-        second: '2-digit',
         hour12: false
     }).format(now);
     timeDisplay.textContent = timeString;

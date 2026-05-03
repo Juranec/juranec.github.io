@@ -19,7 +19,6 @@
     --linkedin-color: #0a66c2;
     --email-color: #10b981;
     --phone-color: #f59e0b;
-    --cv-color: #ec4899;
 }
 
 body.dark-theme {
@@ -56,12 +55,13 @@ body {
     font-family: 'Inter', sans-serif;
     background-color: var(--bg-color);
     color: var(--text-primary);
-    min-height: 100vh;
+    min-height: 100vh; /* Fallback */
+    min-height: 100dvh;
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
-    overflow: hidden;
+    overflow-x: hidden; /* Allow vertical scroll only if screen is tiny */
     transition: background-color 0.5s ease, color 0.5s ease;
 }
 
@@ -78,6 +78,7 @@ body {
     pointer-events: none;
     z-index: 9999;
     transition: background-color 0.3s ease;
+    will-change: transform;
 }
 
 .cursor-outline {
@@ -92,6 +93,7 @@ body {
     pointer-events: none;
     z-index: 9998;
     transition: width 0.2s ease, height 0.2s ease, border-color 0.3s ease;
+    will-change: transform, width, height;
 }
 
 /* Theme Toggle Button */
@@ -121,7 +123,7 @@ body {
 
 /* Dynamic Animated Background */
 .background-animation {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -149,14 +151,15 @@ body {
 
 .profile-card {
     background: var(--card-bg);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
     border: 1px solid var(--card-border);
     border-radius: 24px;
     padding: 40px 30px;
-    box-shadow: 0 25px 50px -12px var(--shadow-base);
+    box-shadow: 0 25px 50px -12px var(--shadow-base), inset 0 0 0 1px rgba(255, 255, 255, 0.2);
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.5s ease, border 0.5s ease;
+    will-change: transform;
 }
 
 .profile-card:hover {
@@ -212,6 +215,7 @@ body {
     margin-bottom: 8px;
     background: linear-gradient(135deg, var(--name-grad-1), var(--name-grad-2));
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
     transition: background 0.5s ease;
 }
@@ -256,24 +260,25 @@ body {
 }
 
 .skills-track span {
-    background: rgba(249, 115, 22, 0.1);
-    color: var(--accent-1);
-    border: 1px solid var(--accent-1);
     padding: 6px 14px;
     border-radius: 20px;
     font-size: 13px;
     font-weight: 600;
     transition: all 0.3s ease;
+    background: var(--skill-bg);
+    color: var(--skill-color);
+    border: 1px solid var(--skill-color);
 }
 
-body.dark-theme .skills-track span {
-    background: rgba(139, 92, 246, 0.1);
-}
+.skills-track span.skill-java { --skill-color: #e32d2f; --skill-bg: rgba(227, 45, 47, 0.1); }
+.skills-track span.skill-python { --skill-color: #3776ab; --skill-bg: rgba(55, 118, 171, 0.1); }
+.skills-track span.skill-databricks { --skill-color: #ff3621; --skill-bg: rgba(255, 54, 33, 0.1); }
+.skills-track span.skill-spark { --skill-color: #e25a1c; --skill-bg: rgba(226, 90, 28, 0.1); }
 
 .skills-track span:hover {
-    background: var(--accent-1);
+    background: var(--skill-color);
     color: white;
-    box-shadow: 0 0 10px var(--accent-1);
+    box-shadow: 0 0 10px var(--skill-color);
 }
 
 @keyframes marquee {
@@ -285,6 +290,7 @@ body.dark-theme .skills-track span {
     display: flex;
     flex-direction: row;
     justify-content: center;
+    flex-wrap: wrap;
     gap: 16px;
     margin-bottom: 24px;
 }
@@ -336,9 +342,6 @@ body.dark-theme .skills-track span {
 .phone { background-color: var(--phone-color); box-shadow: 0 4px 14px rgba(245, 158, 11, 0.3); }
 .phone:hover { box-shadow: 0 6px 20px rgba(245, 158, 11, 0.5); }
 
-.cv-btn { background-color: var(--cv-color); box-shadow: 0 4px 14px rgba(236, 72, 153, 0.3); }
-.cv-btn:hover { box-shadow: 0 6px 20px rgba(236, 72, 153, 0.5); }
-
 /* Status / Time Widget */
 .status-widget {
     font-size: 14px;
@@ -346,9 +349,21 @@ body.dark-theme .skills-track span {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
+    gap: 12px;
     padding-top: 16px;
     border-top: 1px solid var(--card-border);
+}
+
+.status-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 500;
+}
+
+.status-divider {
+    opacity: 0.5;
+    font-size: 12px;
 }
 
 .status-widget i {
